@@ -1,0 +1,84 @@
+/* The Desktop styles are shown by default */
+.site-header {  /* sticky bar across the top */ }
+/* This is what keeps the brand and navigation together inside the header */
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+}
+/* This is what hides the hamburger button on the desktop */
+.menu-toggle {
+  display: none;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}    
+/* This shows the navigation links in a row on the desktop */
+.primary-nav .navlinks {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* This is what makes up the three bars for the hamburger icon */
+.bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  margin: 3px 0;
+  background-color: black;
+}
+
+/* This changes the navigation into a drawer on smaller screens */
+@media (max-width: 767px) {
+/* This shows the hamburger button when on mobile */
+  .menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+/* This makes it so the mobile navigation is on the right side */
+  .primary-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 300px;
+    max-width: 85vw;
+
+    background-color: white;
+    padding: 80px 30px 30px;
+/* This is what starts the drawer off on the right side of the screen */
+    transform: translateX(100%);
+    transition: transform 0.28s ease;
+
+    z-index: 1001;
+  }
+/* This makes it so the navigation links stack on mobile */
+  .primary-nav .navlinks {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    list-style: none;
+  }
+/* This moves the drawer onto the screen when it is open */
+  body.menu-open .primary-nav {
+    transform: translateX(0);
+  }
+/* This adds a dark background behind the open drawer */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    z-index: 1000;
+  }
+/* This is what stops the page from scrolling when the menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
